@@ -3,23 +3,60 @@ function buildMetadata(sample) {
   // @TODO: Complete the following function that builds the metadata panel
 
   // Use `d3.json` to fetch the metadata for a sample
+  var url = `/sample_metadata/${sample}`;
+  d3.json(url).then(function(sample) {
     // Use d3 to select the panel with id of `#sample-metadata`
-
+    // The BOOTSTRAP PANEL, that is
+    var sample_metadata = d3.select("#sample-metadata");
     // Use `.html("") to clear any existing metadata
-
+    sample_metadata.html(""); // DATA CLEARED!
     // Use `Object.entries` to add each key and value pair to the panel
     // Hint: Inside the loop, you will need to use d3 to append new
     // tags for each key-value in the metadata.
-
+    Object.entries(sample).forEach(
+      ([key, value]) => {
+        var data_row = sample_metadata.append("p"); // "p" to space out rows?
+        data_row.text(`${key}: ${value}`);
+      })
+  })
     // BONUS: Build the Gauge Chart
     // buildGauge(data.WFREQ);
-}
+};
 
 function buildCharts(sample) {
 
   // @TODO: Use `d3.json` to fetch the sample data for the plots
-
+  var url2 = `/samples/${sample}`
+  d3.json(url2).then(function(myDataSample) { // This data sample is mine
     // @TODO: Build a Bubble Chart using the sample data
+    var xValues = myDataSample.otu_ids;
+    var yValues = myDataSample.sample_values;
+    var markerSize = myDataSample.sample_values;
+    var markerColors = myDataSample.otu_ids;
+    var textValues = myDataSample.otu_labels;
+    // DO THE PLOTLY THINGS!
+    var bubbleStuffedOreos = {
+      x: xValues,
+      y: yValues,
+      text: textValues,
+      mode: "markers",
+      marker: {
+        size: markerSize,
+        color: markerColors,
+        colorscale: 'Bluered'
+      }
+    }; // end bubbleStuffedOreos
+    var data = [bubbleStuffedOreos];
+
+    var layout = {
+      xaxis: {title: "OTU ID"}
+    }; // end layout
+
+    // STOP! [PLOTLY] TIME!
+    Plotly.newPlot("bubble", data, layout)
+  });
+
+    
 
     // @TODO: Build a Pie Chart
     // HINT: You will need to use slice() to grab the top 10 sample_values,
