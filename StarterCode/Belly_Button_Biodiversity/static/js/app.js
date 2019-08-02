@@ -55,12 +55,29 @@ function buildCharts(sample) {
     // STOP! [PLOTLY] TIME!
     Plotly.newPlot("bubble", data, layout)
   });
-
-    
-
     // @TODO: Build a Pie Chart
     // HINT: You will need to use slice() to grab the top 10 sample_values,
     // otu_ids, and labels (10 each).
+    // NEED TO RUN d3.json AGAIN!
+  d3.json(url2).then(function(myDataSampleTheSqueakquel) {
+    
+  })
+    var sampleValues = myDataSample.sample_values
+    var sortedValues = sampleValues.sort(function(compareFunction()))
+    var pieSlice = [
+      {
+        values: markerSize.slice(0, 10),
+        labels: markerColors.slice(0,10),
+        hovertext: textValues.slice(0, 10),
+        hoverinfo: "hovertext",
+        type: "pie"
+      }
+    ];
+
+    // var layoutPie
+
+    Plotly.plot("pie", pieSlice)
+
 }
 
 function init() {
