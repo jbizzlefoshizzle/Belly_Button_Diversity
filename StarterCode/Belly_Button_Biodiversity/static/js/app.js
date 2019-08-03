@@ -1,10 +1,13 @@
-function buildMetadata(sample) {
+function buildMetadata(data) {
 
   // @TODO: Complete the following function that builds the metadata panel
 
   // Use `d3.json` to fetch the metadata for a sample
-  var url = `/sample_metadata/${sample}`;
-  d3.json(url).then(function(sample) {
+  var url = `/metadata/${data}`;
+  // var url = "/sample_metadata/" + sample;
+  d3.json(url).then(function(data) {
+    var blah = [data]
+    console.log(blah)
     // Use d3 to select the panel with id of `#sample-metadata`
     // The BOOTSTRAP PANEL, that is
     var sample_metadata = d3.select("#sample-metadata");
@@ -13,10 +16,8 @@ function buildMetadata(sample) {
     // Use `Object.entries` to add each key and value pair to the panel
     // Hint: Inside the loop, you will need to use d3 to append new
     // tags for each key-value in the metadata.
-    Object.entries(sample).forEach(
-      ([key, value]) => {
-        var data_row = sample_metadata.append("p"); // "p" to space out rows?
-        data_row.text(`${key}: ${value}`);
+    Object.entries(data).forEach(([key, value]) => {
+        sample_metadata.append("h5").text(`${key}: ${value}`);
       })
   })
     // BONUS: Build the Gauge Chart
@@ -26,9 +27,11 @@ function buildMetadata(sample) {
 function buildCharts(sample) {
 
   // @TODO: Use `d3.json` to fetch the sample data for the plots
+  // var url2 = `/samples/${sample}`
   var url2 = `/samples/${sample}`
   d3.json(url2).then(function(myDataSample) { // This data sample is mine
     // @TODO: Build a Bubble Chart using the sample data
+    // console.log(myDataSample)
     var xValues = myDataSample.otu_ids;
     var yValues = myDataSample.sample_values;
     var markerSize = myDataSample.sample_values;
@@ -59,24 +62,22 @@ function buildCharts(sample) {
     // HINT: You will need to use slice() to grab the top 10 sample_values,
     // otu_ids, and labels (10 each).
     // NEED TO RUN d3.json AGAIN!
-  d3.json(url2).then(function(myDataSampleTheSqueakquel) {
-    
-  })
-    var sampleValues = myDataSample.sample_values
-    var sortedValues = sampleValues.sort(function(compareFunction()))
-    var pieSlice = [
-      {
-        values: markerSize.slice(0, 10),
-        labels: markerColors.slice(0,10),
-        hovertext: textValues.slice(0, 10),
-        hoverinfo: "hovertext",
-        type: "pie"
-      }
-    ];
+    d3.json(url2).then(function(myDataSampleTheSqueakquel) {
+      var pieValues = myDataSampleTheSqueakquel.sample_values.slice(0,10);
+      var otuFlavors = myDataSampleTheSqueakquel.otu_ids.slice(0,10);
+      var pieInfo = myDataSampleTheSqueakquel.otu_labels.slice(0,10);
 
-    // var layoutPie
+      var pieSlice = [
+        {
+          values: pieValues,
+          labels: otuFlavors,
+          hovertext: pieInfo,
+          type: "pie"
+        }
+      ];
 
-    Plotly.plot("pie", pieSlice)
+    Plotly.newPlot("pie", pieSlice);
+  });
 
 }
 
