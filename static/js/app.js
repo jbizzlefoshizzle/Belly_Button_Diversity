@@ -41,6 +41,7 @@ function buildCharts(sample) {
     var bubbleStuffedOreos = {
       x: xValues,
       y: yValues,
+      title: "Bubble Chart",
       text: textValues,
       mode: "markers",
       marker: {
@@ -70,6 +71,7 @@ function buildCharts(sample) {
       var pieSlice = [
         {
           values: pieValues,
+          title: "Top 10 Samples",
           labels: otuFlavors,
           hovertext: pieInfo,
           type: "pie"
