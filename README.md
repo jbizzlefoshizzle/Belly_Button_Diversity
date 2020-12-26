@@ -21,6 +21,7 @@ I created a horizontal bar chart with a dropdown menu to display the top 10 OTUs
 ### Gauge Chart
 * Adapted the Gauge Chart from <https://plot.ly/javascript/gauge-charts/> to plot the weekly washing frequency of every individual,
 modifying the example gauge code to account for values ranging from 0 through 9.
+![gauge-chart](images/gauge.png)
 ### Bubble Chart
 A colorful bubble chart that displays each sample.
 
