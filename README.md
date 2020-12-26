@@ -42,19 +42,13 @@ are displayed by highlighting each key-value pair from the JSON object.
 
 The dashboard dynamically updates all of the plots any time that a new sample is selected!
 
-Additionally, you are welcome to create any layout that you would like for your dashboard. An example dashboard is shown below:
+The initial dashboard is shown below:
 
 ![dashboard](images/complete-layout.png)
 
 ## Deployment
 
-Deploy your app to a free static page hosting service, such as GitHub Pages. Submit the links to your deployment and your GitHub repo.
-
-## Hints
-
-* Use `console.log` inside of your JavaScript code to see what your data looks like at each step.
-
-* Refer to the [Plotly.js documentation](https://plot.ly/javascript/) when building the plots.
+The app was deployed to GitHub Pages, a free static page hosting service.
 
 ### About the Data
 
