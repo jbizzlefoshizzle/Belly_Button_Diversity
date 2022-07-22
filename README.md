@@ -1,5 +1,5 @@
 # Interactive Dashboard - Belly Button Biodiversity
-### [Link to Interactive Dashboard](https://jbizzlefoshizzle.github.io/interactive-dashboard-python-javascript-heroku/)
+### [Link to Interactive Dashboard](https://jbizzlefoshizzle.github.io/Heroku-Dashboard/)
 
 ![Bacteria by filterforge.com](images/bacteria.jpg)
 
